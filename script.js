@@ -28,22 +28,22 @@ function handleButtonClick(button, formatType) {
         • L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41
       </div>
       <div>
-        • BACK HT /FRONT LUNG
+          ** BACK HT /FRONT LUNG
       </div>
       <div>
-        • FRONT KD (Umbilicus)
+          ** FRONT KD (Umbilicus)
       </div>
       <div>
         • R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41
       </div>
       <div>
-        • BACK SI / BACK LU
+          ** BACK SI / BACK LU
       </div>
       <div>
-        • FRONT HT
+          ** FRONT HT
       </div>
       <div>
-        • BACK KD
+          ** BACK KD
       </div>
     `;
     elementalResults.innerHTML = content;
