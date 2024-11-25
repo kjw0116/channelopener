@@ -285,25 +285,25 @@ function updateResults() {
   });
 
   // Separate prioritized items
-  const prioritizedMatches = [];
+  const prioritizedMatches = new Set(); // Use a Set for unique values
   const otherRelatedItems = [];
 
   appendedItems.forEach(item => {
     if (prioritizedItems.includes(item)) {
-      prioritizedMatches.push(item);
+      prioritizedMatches.add(item);
     } else {
       otherRelatedItems.push(item);
     }
   });
 
   // Display prioritized items at the very top
-  if (prioritizedMatches.length > 0) {
+  if (prioritizedMatches.size > 0) {
     const prioritizedHeader = document.createElement('li');
     prioritizedHeader.textContent = 'Prioritized Related Items:';
     prioritizedHeader.style.fontWeight = 'bold';
     itemList.appendChild(prioritizedHeader);
 
-    prioritizedMatches.forEach(item => {
+    Array.from(prioritizedMatches).forEach(item => {
       const li = document.createElement('li');
       li.textContent = item;
       li.classList.add('blue-item'); // Add the blue-item class for styling
