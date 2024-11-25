@@ -25,25 +25,25 @@ function handleButtonClick(button, formatType) {
   if (formatType === 'ether' || formatType === 'earth') {
     const content = `
       <div>
-        • L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41
+        <b>• L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41
       </div>
       <div>
-        &ensp;** BACK HT /FRONT LUNG
+        &ensp;&ensp;** BACK HT /FRONT LUNG
       </div>
       <div>
-        &ensp;** FRONT KD (Umbilicus)
+        &ensp;&ensp;** FRONT KD (Umbilicus)
       </div>
       <div>
-        • R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41
+        <b>• R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41
       </div>
       <div>  
-        &ensp;** BACK SI / BACK LU
+        &ensp;&ensp;** BACK SI / BACK LU
       </div>
       <div>
-        &ensp;** FRONT HT
+        &ensp;&ensp;** FRONT HT
       </div>
       <div>
-        &ensp;** BACK KD
+        &ensp;&ensp;** BACK KD
       </div>
     `;
     elementalResults.innerHTML = content;
