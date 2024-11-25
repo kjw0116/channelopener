@@ -28,22 +28,22 @@ function handleButtonClick(button, formatType) {
         • L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41
       </div>
       <div>
-          ** BACK HT /FRONT LUNG
+        &ensp;** BACK HT /FRONT LUNG
       </div>
       <div>
-          ** FRONT KD (Umbilicus)
+        &ensp;** FRONT KD (Umbilicus)
       </div>
       <div>
         • R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41
       </div>
-      <div>
-          ** BACK SI / BACK LU
+      <div>  
+        &ensp;** BACK SI / BACK LU
       </div>
       <div>
-          ** FRONT HT
+        &ensp;** FRONT HT
       </div>
       <div>
-          ** BACK KD
+        &ensp;** BACK KD
       </div>
     `;
     elementalResults.innerHTML = content;
@@ -238,8 +238,8 @@ const relatedItemsMap = {
   "R-SI1(Magic 8ers)": ["R-SI3","R-LIV8","L-LIV1","L-KD3","L-SI8"],
   "L-SI1(Magic 8ers)": ["L-SI3","L-LIV8","R-LIV1","R-KD3","R-SI8"],
 
-  "R-GB44(Magic 8ers)": ["R-GB44","R-BL65","R-HT3","L-HT9","L-LU9","L-GB34"],
-  "L-GB44(Magic 8ers)": ["L-GB44","L-BL65","L-HT3","R-HT9","R-LU9","R-GB34"],
+  "R-GB44(Magic 8ers)": ["R-BL65","R-HT3","L-HT9","L-LU9","L-GB34"],
+  "L-GB44(Magic 8ers)": ["L-BL65","L-HT3","R-HT9","R-LU9","R-GB34"],
 
   "R-LIV8(Magic 8ers)": ["R-SI1","R-SI3","L-LIV1","L-KD3","L-SI8"],
   "L-LIV8(Magic 8ers)": ["L-SI1","L-SI3","R-LIV1","R-KD3","R-SI8"],
