@@ -34,7 +34,7 @@ function handleButtonClick(button, formatType) {
         &ensp;&ensp;** FRONT KD (Umbilicus)
       </div>
       <div>
-        <b>• R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41</b>
+        <br><b>• R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41</b>
       </div>
       <div>  
         &ensp;&ensp;** BACK SI / BACK LU
