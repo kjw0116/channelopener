@@ -5,30 +5,107 @@ const elementalResults = document.getElementById('elemental-results');
 
 const buttonStates = new Map();
 
+
+
 // Variable to keep track of the currently active (blue) button
 let activeButton = null;
 
 // Function to handle the button click
-function handleButtonClick(button, items) {
+function handleButtonClick(button, formatType) {
   // If there's an active button (currently blue), remove the blue class
   if (activeButton && activeButton !== button) {
     activeButton.classList.remove('blue');
     elementalResults.innerHTML = ''; // Clear the result when removing the blue class
   }
 
-  // Create a new unordered list
-  const newResult = document.createElement("ul");
-
-  // Create list items from the provided array
-  items.forEach(itemText => {
-    const li = document.createElement('li');
-    li.textContent = itemText;
-    newResult.appendChild(li);
-  });
-
-  // Clear previous results and append the new list
+  // Clear previous results
   elementalResults.innerHTML = '';
-  elementalResults.appendChild(newResult);
+
+  // Create formatted content based on the button class
+  if (formatType === 'ether' || formatType === 'earth') {
+    const content = `
+      <div>
+        • L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41
+      </div>
+      <div>
+        • BACK HT /FRONT LUNG
+      </div>
+      <div>
+        • FRONT KD (Umbilicus)
+      </div>
+      <div>
+        • R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41
+      </div>
+      <div>
+        • BACK SI / BACK LU
+      </div>
+      <div>
+        • FRONT HT
+      </div>
+      <div>
+        • BACK KD
+      </div>
+    `;
+    elementalResults.innerHTML = content;
+  } else if (formatType === 'fire') {
+    const content = `
+      <div>
+        • L-HT7, R-KD3, L-ST36, R-GB41, R-SI8, L-LIV8
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="R-PC7, R-GB40, L-LIV3, R-BL40, L-LU5, R-SP9">LU(BACK) LI(FRONT)</button>
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="R-LU9, L-LI4, L-SP3, R-GB34">LIV(FRONT) GB(BACK)</button>
+      </div>
+    `;
+    elementalResults.innerHTML = content;
+    setupSubItemButtons();
+  } else if (formatType === 'water') {
+    const content = `
+      <div>
+        • R-HT7, L-KD3, R-ST36, L-GB41, L-SI8, R-LIV8
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="L-LU9, R-LI4, R-SP3, L-GB34">LV(BACK) GB(FRONT)</button>
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="L-PC7, L-GB40, R-LIV3, L-BL40, R-LU5, L-SP9">LU(FRONT) LI(BACK)</button>
+      </div>
+    `;
+    elementalResults.innerHTML = content;
+    setupSubItemButtons();
+  } else if (formatType === 'metal') {
+    const content = `
+      <div>
+        • R-HT7, L-KD3, R-ST36, L-GB41, L-SI8, R-LIV8
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="L-LU9, R-LI4, R-SP3, L-GB34">HT(BACK) SI(FRONT)</button>
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="L-PC7, L-GB40, R-LIV3, L-BL40, R-LU5, L-SP9">KD(FRONT) BL(BACK)</button>
+      </div>
+    `;
+    elementalResults.innerHTML = content;
+    setupSubItemButtons();
+  } else if (formatType === 'wood') {
+    const content = `
+      <div>
+        • L-HT7, R-KD3, L-ST36, R-GB41, R-SI8, L-LIV8 
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="R-PC7, R-GB40, L-LIV3, R-BL40, L-LU5, R-SP9 
+"> KD(BACK) BL(FRONT)
+</button>
+      </div>
+      <div>
+        • <button class="sub-item-button" data-items="R-LU9, L-LI4, L-SP3, R-GB34">HT(FRONT) SI(BACK)</button>
+      </div>
+    `;
+    elementalResults.innerHTML = content;
+    setupSubItemButtons();
+  }
 
   // Toggle the button color between blue and default
   if (button.classList.contains('blue')) {
@@ -41,69 +118,48 @@ function handleButtonClick(button, items) {
   }
 }
 
-// List of items for each button class
-const buttonItems = {
-  'ether': [
-    'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
-    'BACK HT /FRONT LUNG',
-    'FRONT KD (Umbilicus)',
-    'R-HT7', 'L-KD3', 'L-SI8', 'R-LIV8', 'R-ST36', 'L-GB41',
-    'BACK SI / BACK LU',
-    'FRONT HT',
-    'BACK KD'
-  ],
-  'earth': [
-    'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
-    'BACK HT /FRONT LUNG',
-    'FRONT KD (Umbilicus)',
-    'R-HT7', 'L-KD3', 'L-SI8', 'R-LIV8', 'R-ST36', 'L-GB41',
-    'BACK SI / BACK LU',
-    'FRONT HT',
-    'BACK KD'
-  ],
-  'fire': [
-    'L-HT7', 'R-KD3', 'L-ST36', 'R-GB41', 'R-SI8', 'L-LIV8',
-    'LU(BACK)', 'LI(FRONT)',
-    'LIV(FRONT)', 'GB(BACK)'
-  ],
-  'water': [
-    'R-HT7', 'L-KD3', 'R-ST36', 'L-GB41', 'L-SI8', 'R-LIV8',
-    'LV(BACK)', 'GB(FRONT)',
-    'LU(FRONT)', 'LI(BACK)'
-  ],
-  'wood': [
-    'R-HT7', 'L-KD3', 'R-ST36', 'L-GB41', 'L-SI8', 'R-LIV8',
-    'HT(BACK)', 'SI(FRONT)',
-    'KD(FRONT)', 'BL(BACK)'
-  ],
-  'metal': [
-    'L-HT7', 'R-KD3', 'L-ST36', 'R-GB41', 'R-SI8', 'L-LIV8',
-    'KD(BACK)', 'BL(FRONT)',
-    'HT(FRONT)', 'SI(BACK)'
-  ]
+// Function to handle sub-item button clicks
+function setupSubItemButtons() {
+  document.querySelectorAll('.sub-item-button').forEach(subButton => {
+    subButton.addEventListener('click', () => {
+      const items = subButton.getAttribute('data-items').split(',').map(item => item.trim());
+      const subList = `
+        <div>
+          <ul>
+            ${items.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+      subButton.insertAdjacentHTML('afterend', subList);
+      subButton.disabled = true; // Disable the button after clicking
+    });
+  });
+}
+
+// List of formats for each button class
+const buttonFormats = {
+  'ether': 'ether',
+  'earth': 'earth',
+  'fire': 'fire',
+  'water': 'water',
+  'metal': 'metal',
+  'wood':'wood'
 };
 
 // Add event listener for all buttons
 elementalButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // Check if the button has a class (ether, earth, fire, etc.)
-    Object.keys(buttonItems).forEach(className => {
+    // Check if the button matches a known format
+    Object.keys(buttonFormats).forEach(className => {
       if (button.classList.contains(className)) {
-        // Call the handleButtonClick function with the appropriate items
-        handleButtonClick(button, buttonItems[className]);
+        // Call the handleButtonClick function with the appropriate format type
+        handleButtonClick(button, buttonFormats[className]);
       }
     });
   });
 });
 
 
-
-
-
-//   // Inject the new list into the "elemental" div
-//   elementalDiv.innerHTML = ''; // Clear any existing content in the div
-//   elementalDiv.appendChild(newList); // Add the new list
-// });
 
 
 function showResult(){
@@ -268,3 +324,48 @@ function resetButtons() {
   itemList.innerHTML = ''; // Clear the displayed items list
 }
 
+
+
+
+
+// // List of items for each button class
+// const buttonItems = {
+//   'ether': [
+//     'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
+//     'BACK HT /FRONT LUNG',
+//     'FRONT KD (Umbilicus)',
+//     'R-HT7', 'L-KD3', 'L-SI8', 'R-LIV8', 'R-ST36', 'L-GB41',
+//     'BACK SI / BACK LU',
+//     'FRONT HT',
+//     'BACK KD'
+//   ],
+//   'earth': [
+//     'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
+//     'BACK HT /FRONT LUNG',
+//     'FRONT KD (Umbilicus)',
+//     'R-HT7', 'L-KD3', 'L-SI8', 'R-LIV8', 'R-ST36', 'L-GB41',
+//     'BACK SI / BACK LU',
+//     'FRONT HT',
+//     'BACK KD'
+//   ],
+//   'fire': [
+//     'L-HT7', 'R-KD3', 'L-ST36', 'R-GB41', 'R-SI8', 'L-LIV8',
+//     'LU(BACK)', 'LI(FRONT)',
+//     'LIV(FRONT)', 'GB(BACK)'
+//   ],
+//   'water': [
+//     'R-HT7', 'L-KD3', 'R-ST36', 'L-GB41', 'L-SI8', 'R-LIV8',
+//     'LV(BACK)', 'GB(FRONT)',
+//     'LU(FRONT)', 'LI(BACK)'
+//   ],
+//   'wood': [
+//     'R-HT7', 'L-KD3', 'R-ST36', 'L-GB41', 'L-SI8', 'R-LIV8',
+//     'HT(BACK)', 'SI(FRONT)',
+//     'KD(FRONT)', 'BL(BACK)'
+//   ],
+//   'metal': [
+//     'L-HT7', 'R-KD3', 'L-ST36', 'R-GB41', 'R-SI8', 'L-LIV8',
+//     'KD(BACK)', 'BL(FRONT)',
+//     'HT(FRONT)', 'SI(BACK)'
+//   ]
+// };

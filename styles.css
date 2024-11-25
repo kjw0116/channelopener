@@ -193,6 +193,68 @@ button.blue {
   flex-grow: 1;
   background-color: #f5f5f5;
 }
+
+#elementalResults {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+ /* General container styles */
+ .container {
+  display: flex;
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Space between columns */
+  max-width: 800px;
+  margin: 0 auto; /* Center the container */
+  padding: 20px;
+}
+
+/* Left column: Buttons */
+.buttons-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Hide the checkboxes completely */
+.toggle-checkbox {
+  display: none;
+}
+
+.toggle-button {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+}
+
+.toggle-button:hover {
+  background-color: #0056b3;
+}
+
+/* Right column: Reveal text */
+.text-column {
+  flex: 1; /* Take remaining space */
+  padding-left: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Initially hide text */
+.toggle-text {
+  display: none;
+}
+
+/* Show text when checkbox is checked */
+.toggle-checkbox:checked + .toggle-button + .toggle-text {
+  display: block;
+}
 /* Responsive Behavior for Mobile */
 @media (max-width: 768px) {
   .container {
