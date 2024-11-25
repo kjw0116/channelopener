@@ -122,16 +122,23 @@ function handleButtonClick(button, formatType) {
 function setupSubItemButtons() {
   document.querySelectorAll('.sub-item-button').forEach(subButton => {
     subButton.addEventListener('click', () => {
-      const items = subButton.getAttribute('data-items').split(',').map(item => item.trim());
-      const subList = `
-        <div>
-          <ul>
-            ${items.map(item => `<li>${item}</li>`).join('')}
-          </ul>
-        </div>
-      `;
-      subButton.insertAdjacentHTML('afterend', subList);
-      subButton.disabled = true; // Disable the button after clicking
+      // Check if the sub-items are already displayed
+      const existingSubList = subButton.nextElementSibling;
+      if (existingSubList && existingSubList.classList.contains('sub-item-list')) {
+        // Remove the list if it exists
+        existingSubList.remove();
+      } else {
+        // Otherwise, create and show the sub-items
+        const items = subButton.getAttribute('data-items').split(',').map(item => item.trim());
+        const subList = `
+          <div class="sub-item-list">
+            <ul>
+              ${items.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+        subButton.insertAdjacentHTML('afterend', subList);
+      }
     });
   });
 }
@@ -143,7 +150,7 @@ const buttonFormats = {
   'fire': 'fire',
   'water': 'water',
   'metal': 'metal',
-  'wood':'wood'
+  'wood': 'wood'
 };
 
 // Add event listener for all buttons
@@ -161,12 +168,13 @@ elementalButtons.forEach(button => {
 
 
 
-
-function showResult(){
-  Document.createElement('li');
-  
-
+// Optional: Create reusable showResult logic for dynamically generated content
+function showResult(itemText) {
+  const listItem = document.createElement('li');
+  listItem.textContent = itemText;
+  return listItem;
 }
+
 document.getElementById('reset-button').addEventListener('click', resetButtons);
   
 
@@ -263,6 +271,46 @@ function updateResults() {
   const itemList = document.getElementById('item-list');
   itemList.innerHTML = ''; // Clear previous results
 
+  // Define the prioritized items
+  const prioritizedItems = ['R-SP9', 'R-ST36', 'R-GB34', 'R-LI11', 'R-KD3', 'R-SI8', 'R-LIV8', 'R-HT7', 'R-LU9', 'R-LIV3', 'R-GB41', 'R-PC7', 'R-SP3', 'R-SI3', 'R-UB40',
+                            'L-SP9', 'L-ST36', 'L-GB34', 'L-LI11', 'L-KD3', 'L-SI8', 'L-LIV8', 'L-HT7', 'L-LU9', 'L-LIV3', 'L-GB41', 'L-PC7', 'L-SP3', 'L-SI3', 'L-UB40'
+  ];
+
+  // Find related items
+  const appendedItems = [];
+  commonItems.forEach(item => {
+    if (relatedItemsMap[item]) {
+      appendedItems.push(...relatedItemsMap[item]);
+    }
+  });
+
+  // Separate prioritized items
+  const prioritizedMatches = [];
+  const otherRelatedItems = [];
+
+  appendedItems.forEach(item => {
+    if (prioritizedItems.includes(item)) {
+      prioritizedMatches.push(item);
+    } else {
+      otherRelatedItems.push(item);
+    }
+  });
+
+  // Display prioritized items at the very top
+  if (prioritizedMatches.length > 0) {
+    const prioritizedHeader = document.createElement('li');
+    prioritizedHeader.textContent = 'Prioritized Related Items:';
+    prioritizedHeader.style.fontWeight = 'bold';
+    itemList.appendChild(prioritizedHeader);
+
+    prioritizedMatches.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      li.classList.add('blue-item'); // Add the blue-item class for styling
+      itemList.appendChild(li);
+    });
+  }
+
   // Display common items in red buttons
   if (commonItems.length > 0) {
     const header = document.createElement('li');
@@ -277,22 +325,14 @@ function updateResults() {
     });
   }
 
-  // Find related items
-  const appendedItems = [];
-  commonItems.forEach(item => {
-    if (relatedItemsMap[item]) {
-      appendedItems.push(...relatedItemsMap[item]);
-    }
-  });
-
-  // Display related items in blue
-  if (appendedItems.length > 0) {
+  // Display other related items in blue
+  if (otherRelatedItems.length > 0) {
     const relatedHeader = document.createElement('li');
-    relatedHeader.textContent = 'Related Items:';
+    relatedHeader.textContent = 'Other Related Items:';
     relatedHeader.style.fontWeight = 'bold';
     itemList.appendChild(relatedHeader);
 
-    appendedItems.forEach(item => {
+    otherRelatedItems.forEach(item => {
       const li = document.createElement('li');
       li.textContent = item;
       li.classList.add('blue-item'); // Add the blue-item class for styling
@@ -300,6 +340,7 @@ function updateResults() {
     });
   }
 }
+
 
 function getCommonItems(buttons) {
   if (buttons.length === 0) return [];

@@ -27,17 +27,15 @@ button.blue {
   color: white;
 }
 
-/* Main container for layout */
-.container {
-  display: grid;
-  grid-template-columns: 400px auto;
-  gap:10px;
-  align-items:start;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
+
+ /* General container styles */
+ .container {
+  display: flex;
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Space between columns */
+  max-width: 800px;
+  margin: 0 auto; /* Center the container */
   padding: 20px;
-  
 }
 
 /* Left Column with Button Container */
@@ -52,6 +50,7 @@ button.blue {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Shadow */
   height: auto; /* Height adjusts to content */
   gap:10px;
+  width:auto
 }
 
 /* Button container grid layout */
@@ -63,19 +62,43 @@ button.blue {
   grid-template-columns: repeat(4, 1fr); /* 4 columns for buttons */
   grid-row:1;
   gap: 10px;
-  max-width: 300px;
+  max-width: 500px;
   width: 100%;
+  
 }
 
 /* Ensure buttons have a fixed size */
 .item-button {
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
   cursor: pointer;
   width: 100%;
   height: 50px; /* Fixed height for buttons */
   box-sizing: border-box;
+  line-height: 0;
+  white-space: nowrap;
 }
+
+.narrow-button{
+  
+  height:25px;
+}
+
+.right-arm{
+ margin-right:10px;
+ display:flex;
+ flex-direction: row;
+ grid-column: span 2;
+}
+.left-arm{
+  margin-left:10px;
+  display:flex;
+  flex-direction: row;
+  grid-column: span 2;
+ }
+ .right-arm-endpoint{
+  margin-bottom: 10px;
+ }
 
 /* Right Column with Controls and Result Area */
 .right-column {
@@ -199,15 +222,6 @@ button.blue {
   font-family: Arial, sans-serif;
 }
 
- /* General container styles */
- .container {
-  display: flex;
-  align-items: flex-start; /* Align items at the top */
-  gap: 20px; /* Space between columns */
-  max-width: 800px;
-  margin: 0 auto; /* Center the container */
-  padding: 20px;
-}
 
 /* Left column: Buttons */
 .buttons-column {
