@@ -25,7 +25,7 @@ function handleButtonClick(button, formatType) {
   if (formatType === 'ether' || formatType === 'earth') {
     const content = `
       <div>
-        <b>• L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41
+        <b>• L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41</b>
       </div>
       <div>
         &ensp;&ensp;** BACK HT /FRONT LUNG
@@ -34,7 +34,7 @@ function handleButtonClick(button, formatType) {
         &ensp;&ensp;** FRONT KD (Umbilicus)
       </div>
       <div>
-        <b>• R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41
+        <b>• R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41</b>
       </div>
       <div>  
         &ensp;&ensp;** BACK SI / BACK LU
