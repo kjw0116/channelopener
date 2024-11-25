@@ -22,6 +22,10 @@ body {
   font-weight: bold; /* Optional: Makes related items stand out */
 }
 
+button.blue {
+  background-color: blue;
+  color: white;
+}
 
 /* Main container for layout */
 .container {

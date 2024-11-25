@@ -1,8 +1,116 @@
 const buttons = document.querySelectorAll('.item-button');
 const itemList = document.getElementById('item-list');
+const elementalButtons = document.querySelectorAll('.elemental-button');
+const elementalResults = document.getElementById('elemental-results');
 
 const buttonStates = new Map();
 
+// Variable to keep track of the currently active (blue) button
+let activeButton = null;
+
+// Function to handle the button click
+function handleButtonClick(button, items) {
+  // If there's an active button (currently blue), remove the blue class
+  if (activeButton && activeButton !== button) {
+    activeButton.classList.remove('blue');
+    elementalResults.innerHTML = ''; // Clear the result when removing the blue class
+  }
+
+  // Create a new unordered list
+  const newResult = document.createElement("ul");
+
+  // Create list items from the provided array
+  items.forEach(itemText => {
+    const li = document.createElement('li');
+    li.textContent = itemText;
+    newResult.appendChild(li);
+  });
+
+  // Clear previous results and append the new list
+  elementalResults.innerHTML = '';
+  elementalResults.appendChild(newResult);
+
+  // Toggle the button color between blue and default
+  if (button.classList.contains('blue')) {
+    button.classList.remove('blue'); // If it's already blue, remove the blue class
+    elementalResults.innerHTML = ''; // Clear the results when reverting to default
+    activeButton = null; // Reset the active button when it turns back to default
+  } else {
+    button.classList.add('blue'); // Add the 'blue' class to change color
+    activeButton = button; // Set this button as the active (blue) button
+  }
+}
+
+// List of items for each button class
+const buttonItems = {
+  'ether': [
+    'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
+    'BACK HT /FRONT LUNG',
+    'FRONT KD (Umbilicus)',
+    'R-HT7', 'L-KD3', 'L-SI8', 'R-LIV8', 'R-ST36', 'L-GB41',
+    'BACK SI / BACK LU',
+    'FRONT HT',
+    'BACK KD'
+  ],
+  'earth': [
+    'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
+    'BACK HT /FRONT LUNG',
+    'FRONT KD (Umbilicus)',
+    'R-HT7', 'L-KD3', 'L-SI8', 'R-LIV8', 'R-ST36', 'L-GB41',
+    'BACK SI / BACK LU',
+    'FRONT HT',
+    'BACK KD'
+  ],
+  'fire': [
+    'L-HT7', 'R-KD3', 'L-ST36', 'R-GB41', 'R-SI8', 'L-LIV8',
+    'LU(BACK)', 'LI(FRONT)',
+    'LIV(FRONT)', 'GB(BACK)'
+  ],
+  'water': [
+    'R-HT7', 'L-KD3', 'R-ST36', 'L-GB41', 'L-SI8', 'R-LIV8',
+    'LV(BACK)', 'GB(FRONT)',
+    'LU(FRONT)', 'LI(BACK)'
+  ],
+  'wood': [
+    'R-HT7', 'L-KD3', 'R-ST36', 'L-GB41', 'L-SI8', 'R-LIV8',
+    'HT(BACK)', 'SI(FRONT)',
+    'KD(FRONT)', 'BL(BACK)'
+  ],
+  'metal': [
+    'L-HT7', 'R-KD3', 'L-ST36', 'R-GB41', 'R-SI8', 'L-LIV8',
+    'KD(BACK)', 'BL(FRONT)',
+    'HT(FRONT)', 'SI(BACK)'
+  ]
+};
+
+// Add event listener for all buttons
+elementalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Check if the button has a class (ether, earth, fire, etc.)
+    Object.keys(buttonItems).forEach(className => {
+      if (button.classList.contains(className)) {
+        // Call the handleButtonClick function with the appropriate items
+        handleButtonClick(button, buttonItems[className]);
+      }
+    });
+  });
+});
+
+
+
+
+
+//   // Inject the new list into the "elemental" div
+//   elementalDiv.innerHTML = ''; // Clear any existing content in the div
+//   elementalDiv.appendChild(newList); // Add the new list
+// });
+
+
+function showResult(){
+  Document.createElement('li');
+  
+
+}
 document.getElementById('reset-button').addEventListener('click', resetButtons);
   
 
@@ -11,7 +119,7 @@ document.querySelectorAll('.item-button').forEach(button => {
 
   button.addEventListener('click', () => {
     const currentState = buttonStates.get(button);
-    console.log('clicked')
+    
 
     if (currentState === 'default') {
       buttonStates.set(button, 'blue');
