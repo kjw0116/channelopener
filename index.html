@@ -131,7 +131,7 @@
       L-BL67, L-St43, L-LU5,
       R-LU11,R-PC7,R-BL40,
       L-LU5(Magic 8ers),
-      L-LI1(Magic 8er),
+      L-LI1(Magic 8ers),
       L-BL67(Magic 8ers),
       R-ST45(Magic 8ers),
       R-PC3(Magic 8ers),
@@ -449,10 +449,10 @@
       R-KD10(Magic 8ers), L-KD10(Magic 8ers),
       R-ST45(Magic 8ers),
       R-SP9(Magic 8ers),
-      R-TW1(Magic 8ers),
-      L-HT3(Magic 8ers),
-      L-SI1(Magic 8ers),
-      L-LIV8(Magic 8ers),
+      L-TW1(Magic 8ers),
+      R-HT3(Magic 8ers),
+      R-SI1(Magic 8ers),
+      R-LIV8(Magic 8ers),
       R-LI5(Fire 12ers), L-LI5(Fire 12ers),
       R-SI5(Fire 12ers), L-SI5(Fire 12ers),
       R-TW6(Fire 12ers), L-TW6(Fire 12ers),
@@ -478,7 +478,7 @@
       R-BL67, L-BL67, R-ST43, L-ST43, R-LU5, L-LU5,
       R-LU11, L-LU11, R-PC7, L-PC7, R-BL40, L-BL40,
       L-LU5(Magic 8ers), R-LU5(Magic 8ers),
-      R-LI1(Magic 8ers),
+      L-LI1(Magic 8ers),
       L-BL67(Magic 8ers), R-BL67(Magic 8ers),
       L-KD10(Magic 8ers),
       L-ST45(Magic 8ers),
@@ -498,12 +498,12 @@
       L-KD7(Sweet 16ers),L-SI2(Sweet 16ers),
       L-HT4(Sweet 16ers),L-BL66(Sweet 16ers),
       R-HT4(Sweet 16ers),R-BL66(Sweet 16ers),
-      R-SP5(Sweet 16ers),R-LI2(Sweet 16ers),
+      L-LIV4(Sweet 16ers), L-TW2(Sweet 16ers),
       R-PC5(Sweet 16ers),R-GB43(Sweet 16ers),
       L-PC5(Sweet 16ers),L-GB43(Sweet 16ers)
       ">R-LI</button>
-      </div>
-      <div class="left-arm">
+    </div>
+    <div class="left-arm">
           <button class="item-button" data-items="L-GB44, L-BL65, L-HT3,
           R-HT9, R-LU9, R-GB34,
           L-PC9, L-HT7, L-ST36,
@@ -878,11 +878,17 @@
 
   <script src="script.js"></script>
   <script>
-    if ('serviceWorker' in navigator){
-      window.addEventListener('load',()=>{
-        navigator.serviceWorker.register('./sw.js');
-      })
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered successfully:', registration);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        });
     }
-  </script>
+</script>
 </body>
 </html>

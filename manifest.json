@@ -1,7 +1,8 @@
 {
     "name":"ChannelOpener",
     "short_name":"CO",
-    "start_url":"/?home=ture",
+    "start_url":"/channelopener/",
+    "scope": "/channelopener/",
     "icons":[
         {
             "src": "icons/manifest-icon-192.maskable.png",
@@ -31,5 +32,8 @@
     "theme_color":"#000000",
     "background_color": "#FFFFFF",
     "display":"fullscreen",
-    "orientation":"portrait"
+    "orientation":"portrait",
+    "serviceworker": {
+      "src": "sw.js"  
+    }
 }
