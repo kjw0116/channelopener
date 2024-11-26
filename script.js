@@ -28,22 +28,20 @@ function handleButtonClick(button, formatType) {
         <b>• L-HT7, R-KD3, R-SI8, L-LIV8, L-ST36, R-GB41</b>
       </div>
       <div>
-        &ensp;&ensp;** BACK HT /FRONT LUNG
+        &ensp;&ensp;** BACK HT /FRONT LU
       </div>
       <div>
-        &ensp;&ensp;** FRONT KD (Umbilicus)
+        &ensp;&ensp;** BACK BL
       </div>
       <div>
         <br><b>• R-HT7, L-KD3, L-SI8, R-LIV8, R-ST36, L-GB41</b>
       </div>
       <div>  
-        &ensp;&ensp;** BACK SI / BACK LU
+        &ensp;&ensp;** FRONT HT / BACK LU
       </div>
       <div>
-        &ensp;&ensp;** FRONT HT
+        &ensp;&ensp;** BACK SI
       </div>
-      <div>
-        &ensp;&ensp;** BACK KD
       </div>
     `;
     elementalResults.innerHTML = content;
@@ -373,12 +371,11 @@ function resetButtons() {
 // const buttonItems = {
 //   'ether': [
 //     'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
-//     'BACK HT /FRONT LUNG',
-//     'FRONT KD (Umbilicus)',
+//     'BACK HT /FRONT LU',
+//     'BACK BL',
 //     'R-HT7', 'L-KD3', 'L-SI8', 'R-LIV8', 'R-ST36', 'L-GB41',
-//     'BACK SI / BACK LU',
-//     'FRONT HT',
-//     'BACK KD'
+//     'FRONT HT / BACK LU',
+//     'BACK SI'
 //   ],
 //   'earth': [
 //     'L-HT7', 'R-KD3', 'R-SI8', 'L-LIV8', 'L-ST36', 'R-GB41',
