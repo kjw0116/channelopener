@@ -6,6 +6,106 @@ const elementalResults = document.getElementById('elemental-results');
 const buttonStates = new Map();
 
 
+  // 버튼별 결과 데이터
+  const resultData = {
+    button2: [
+      // 1행: R LV8(R LI3, L KD3, L SI8)
+      '<span class="red highlight bold underline">R LV8</span>' +
+      '(<span class="red">R LI3</span>, ' +
+      '<span class="blue highlight bold italic">L KD3</span>, ' +
+      '<span class="blue bold italic">L SI8</span>)',
+      // 2행: (R ST36, L GB41, R HT7, L PC3)
+      '(<span class="red highlight bold italic underline">R ST36</span>, ' +
+      '<span class="blue italic bold">L GB41</span>, ' +
+      '<span class="red italic bold">R HT7</span>, ' +
+      '<span class="blue">L PC3</span>)'
+    ],
+     button1: [
+      // 1행: L LV8(L LI3, R KD3, R SI8)
+      '<span class="blue highlight bold underline">L LV8</span>' +
+      '(<span class="blue">L LI3</span>, ' +
+      '<span class="red highlight bold italic">R KD3</span>, ' +
+      '<span class="red bold italic">R SI8</span>)',
+      // 2행: (L ST36, R GB41, L HT7, R PC3)
+      '(<span class="blue highlight bold italic ">L  ST36</span>, ' +
+      '<span class="red italic bold">R GB41</span>, ' +
+      '<span class="blue italic bold">L HT7</span>, ' +
+      '<span class="red">R PC3</span>)'
+    ],
+    button4: [
+      // 1행: R PC7(L LU5, R BL40)
+      '<span class="red highlight bold underline">R PC7</span>' +
+      '(<span class="blue italic bold">L LU5</span>, ' +
+      '<span class="red bold italic">R BL40</span>)',
+      // 2행: (L LV3, R SP9, R SI3)
+      '(<span class="blue ohighlight bold italic">L  LV3</span>, ' +
+      '<span class="red italic bold">R SP9</span>, ' +
+      '<span class="red italic bold">R SI3</span>)'
+    ],
+    button3: [
+      // 1행: R PC7(L LU5, R BL40)
+      '<span class="blue highlight bold underline">L PC7</span>' +
+      '(<span class="red italic, bold">R LU5</span>, ' +
+      '<span class="blue bold italic">L BL40</span>)',
+      // 2행: (L LV3, R SP9, R SI3)
+      '(<span class="red ohighlight bold italic">R  LV3</span>, ' +
+      '<span class="blue italic bold">L SP9</span>, ' +
+      '<span class="blue italic bold">L SI3</span>)'
+    ],
+    button6: [
+      // 1행: R PC7(L LU5, R BL40)
+      '<span class="red highlight bold underline">R LU9</span>' +
+      '(<span class="red italic, bold">R GB34</span>, ' +
+      '<span class="blue bold italic">L GB44</span>, ' +
+      '<span class="blue">L HT3</span>)',
+      // 2행: (L LV3, R SP9, R SI3)
+      '(<span class="blue ohighlight bold">L  SP3</span>, ' +
+      '<span class="blue italic bold">L LI11</span>, ' +
+      '<span class="blue italic bold">L SP10</span>, ' +
+      '<span class="red bold italic">R SJ3</span>)' +
+      '<span class="bold"> - BACK BLOOD' 
+    ],
+    button5: [
+      // 1행: R PC7(L LU5, R BL40)
+      '<span class="blue highlight bold underline">L LU9</span>' +
+      '(<span class="blue italic bold">L GB34</span>, ' +
+      '<span class="red bold italic">R GB44</span>, ' +
+      '<span class="red">R HT3</span>)',
+      // 2행: (L LV3, R SP9, R SI3)
+      '(<span class="red ohighlight bold italic underline">R  SP3</span>, ' +
+      '<span class="red italic bold">R LI11</span>, ' +
+      '<span class="red italic bold">R SP10</span>. ' +
+      '<span class="blue bold italic">L SJ3</span>)' +
+      '<span class="bold"> - FRONT BLOOD' 
+    ],
+    // button2~6 필요시 동일한 포맷으로 추가…
+  };
+
+ document.querySelectorAll('.six-buttons-section .custom-btn')
+  .forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 1) 래퍼 안에 붙은 기존 결과 지우기 (토글 기능)
+      const wrapper = btn.parentElement; // .button-wrapper
+      const ownResult = wrapper.querySelector('.button-result');
+      if (ownResult) {
+        ownResult.remove();
+        return;  // 토글 오프
+      }
+
+      // 2) 다른 버튼의 결과도 모두 지우기
+      document.querySelectorAll('.button-result').forEach(el => el.remove());
+
+      // 3) 새 결과 생성 & 삽입
+      const container = document.createElement('div');
+      container.classList.add('button-result');
+      (resultData[btn.id] || []).forEach(htmlLine => {
+        const p = document.createElement('p');
+        p.innerHTML = htmlLine;
+        container.appendChild(p);
+      });
+      wrapper.appendChild(container);  // 버튼 바로 아래에 들어갑니다
+    });
+  });
 
 // Variable to keep track of the currently active (blue) button
 let activeButton = null;
