@@ -36,19 +36,23 @@ const buttonStates = new Map();
       // 1행: R PC7(L LU5, R BL40)
       '<span class="red highlight bold underline">R PC7</span>' +
       '(<span class="blue italic bold">L LU5</span>, ' +
+      '<span class="red italic, bold">L ST43</span>, ' + 
       '<span class="red bold italic">R BL40</span>)',
       // 2행: (L LV3, R SP9, R SI3)
       '(<span class="blue ohighlight bold italic">L  LV3</span>, ' +
+      '<span class="red italic, bold">L SJ10</span>, ' + 
       '<span class="red italic bold">R SP9</span>, ' +
       '<span class="red italic bold">R SI3</span>)'
     ],
     button3: [
       // 1행: R PC7(L LU5, R BL40)
       '<span class="blue highlight bold underline">L PC7</span>' +
-      '(<span class="red italic, bold">R LU5</span>, ' +
+      '(<span class="red italic, bold">R LU5</span>, ' + 
+      '<span class="red italic, bold">R ST43</span>, ' +
       '<span class="blue bold italic">L BL40</span>)',
       // 2행: (L LV3, R SP9, R SI3)
       '(<span class="red ohighlight bold italic">R  LV3</span>, ' +
+      '<span class="red italic, bold">R SJ10</span>, ' +
       '<span class="blue italic bold">L SP9</span>, ' +
       '<span class="blue italic bold">L SI3</span>)'
     ],
